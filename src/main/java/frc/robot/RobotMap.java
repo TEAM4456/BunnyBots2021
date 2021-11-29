@@ -17,7 +17,7 @@ public class RobotMap {
     public static void init() {
 
         //Creates the talons on the left side of the drivetrain
-        leftMaster = new WPI_TalonSRX(1);
+        leftMaster = new WPI_TalonSRX(0);
         leftFollower = new WPI_TalonSRX(2);
         leftFollower.set(ControlMode.Follower, 1); // does everything leftmaster does
 
