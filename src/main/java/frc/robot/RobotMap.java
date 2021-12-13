@@ -14,17 +14,23 @@ public class RobotMap {
     public static WPI_TalonSRX rightMaster;
     public static WPI_TalonSRX rightFollower;
 
+    public static WPI_TalonSRX liftTalon;
+    public static WPI_TalonSRX clawTalon;
+
     public static void init() {
 
         //Creates the talons on the left side of the drivetrain
-        leftMaster = new WPI_TalonSRX(0);
+        leftMaster = new WPI_TalonSRX(1);
         leftFollower = new WPI_TalonSRX(2);
         leftFollower.set(ControlMode.Follower, 1); // does everything leftmaster does
 
         //Creates the talons on the right side of the drivetrain 
-        rightMaster = new WPI_TalonSRX(3);
-        rightFollower = new WPI_TalonSRX(4);
-        rightFollower.set(ControlMode.Follower, 3); // does everything rightmaster does 
+        rightMaster = new WPI_TalonSRX(5);
+        rightFollower = new WPI_TalonSRX(6);
+        rightFollower.set(ControlMode.Follower, 5); // does everything rightmaster does 
+
+        liftTalon = new WPI_TalonSRX(3);
+        clawTalon = new WPI_TalonSRX(4);
         
         
 

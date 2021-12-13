@@ -10,8 +10,10 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.*;
+import frc.robot.Commands.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,8 +26,10 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
 
-  private final DifferentialDrive diffDrive = new DifferentialDrive(RobotMap.leftMaster, RobotMap.rightFollower);
+  private final DifferentialDrive diffDrive = new DifferentialDrive(RobotMap.leftMaster, RobotMap.rightMaster);
   private final Drive drive = new Drive(RobotMap.leftMaster, RobotMap.rightMaster);
+  private final Claw claw = new Claw(RobotMap.clawTalon);
+  private final Lift lift = new Lift(RobotMap.liftTalon);
   private final XboxController controller = new XboxController(0);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -42,7 +46,17 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton aButton = new JoystickButton(controller, 1);
+    aButton.whileHeld(new moveTheLift(lift, 0.2));
 
+    JoystickButton xButton = new JoystickButton(controller, 3);
+    xButton.whileHeld(new moveTheLift(lift, -0.2));
+
+    JoystickButton bButton = new JoystickButton(controller, 2);
+    bButton.whileHeld(new moveTheClaw(claw, 0.2));
+
+    JoystickButton yButton = new JoystickButton(controller, 4);
+    yButton.whileHeld(new moveTheClaw(claw, -0.2));
 
   }
 
